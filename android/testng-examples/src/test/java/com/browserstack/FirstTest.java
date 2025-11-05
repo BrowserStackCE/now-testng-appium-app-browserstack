@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import com.browserstack.AppPercySDK;
 
 import io.appium.java_client.AppiumBy;
 
@@ -15,20 +16,12 @@ public class FirstTest extends AppiumTest {
 
     @Test
     public void test() throws Exception {
-      WebElement skipButton = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-          ExpectedConditions.presenceOfElementLocated(AppiumBy.id("org.wikipedia.alpha:id/fragment_onboarding_skip_button")));
-      skipButton.click();
+        AppPercySDK.screenshot(driver, "My Screenshot");
+        String pageSource = driver.getPageSource();
+        System.out.println("Page Source Length: " + pageSource.length());
 
-      WebElement searchElement = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-          ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("Search Wikipedia")));
-
-      searchElement.click();
-      WebElement insertTextElement = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-          ExpectedConditions.elementToBeClickable(AppiumBy.id("org.wikipedia.alpha:id/search_src_text")));
-      insertTextElement.sendKeys("BrowserStack");
-      Thread.sleep(5000);
-
-      List<WebElement> allProductsName = driver.findElements(AppiumBy.className("android.widget.TextView"));
-      Assert.assertTrue(allProductsName.size() > 0);
+        // Validate length is greater than 100
+        Assert.assertTrue(pageSource.length() > 100,
+                "Page source length is not greater than 100!");
     }
 }

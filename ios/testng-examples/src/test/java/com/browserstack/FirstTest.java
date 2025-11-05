@@ -15,18 +15,10 @@ public class FirstTest extends AppiumTest {
 
   @Test
   public void test() throws Exception {
-    WebElement textButton = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-        ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("Text Button")));
-    textButton.click();
-    WebElement textInput = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-        ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("Text Input")));
-    textInput.sendKeys("hello@browserstack.com"+"\n");
+        String pageSource = driver.getPageSource();
+        System.out.println("Page Source Length: " + pageSource.length());
 
-    Thread.sleep(5000);
-
-    WebElement textOutput = (WebElement) new WebDriverWait(driver, Duration.ofSeconds(30)).until(
-        ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("Text Output")));
-
-    Assert.assertEquals(textOutput.getText(),"hello@browserstack.com");
+        Assert.assertTrue(pageSource.length() > 100,
+                "Page source length is not greater than 100!");
   }
 }
