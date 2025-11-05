@@ -1,38 +1,15 @@
-
 userName: ${BROWSERSTACK_USERNAME}
 accessKey: ${BROWSERSTACK_ACCESS_KEY}
-
 projectName: NOW-MOBILE-TEST
-
 buildName: NOW-MOBILE-TEST
-
 buildIdentifier: '#${BUILD_NUMBER}'
-
 framework: testng
-
 source: testng:appium-sample-sdk:v1.1
-
 app: ${BROWSERSTACK_APP_ID} || bs://sample.app
-
-
-platforms:
-  - deviceName: iPhone 14 Pro
-    osVersion: 16
-    platformName: ios
-  - deviceName: iPhone 13 Pro
-    osVersion: 15
-    platformName: ios
-  - deviceName: iPhone 15 Plus
-    osVersion: 17
-    platformName: ios
-
-
 parallelsPerPlatform: 1
 percy: true
 percyCaptureMode: auto
-
 browserstackLocal: true # <boolean> (Default false)
-
 debug: false 
 networkLogs: false 
 consoleLogs: errors 
