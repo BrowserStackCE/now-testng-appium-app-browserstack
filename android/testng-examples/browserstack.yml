@@ -1,16 +1,22 @@
-userName: ${BROWSERSTACK_USERNAME}
-accessKey: ${BROWSERSTACK_ACCESS_KEY}
-projectName: NOW-MOBILE-TEST
-buildName: NOW-MOBILE-TEST
-buildIdentifier: '#${BUILD_NUMBER}'
+userName: $BROWSERSTACK_USERNAME
+accessKey: $BROWSERSTACK_ACCESS_KEY
 framework: testng
-source: testng:appium-sample-sdk:v1.1
-parallelsPerPlatform: 1
+browserstackLocal: true
+buildName: ${BROWSERSTACK_BUILD_NAME}
+buildIdentifier: '#${BUILD_NUMBER}'
+projectName: ${BROWSERSTACK_PROJECT_NAME}
+source: ${BROWSERSTACK_BUILD_NAME}
 percy: true
-percyCaptureMode: auto
-browserstackLocal: true # <boolean> (Default false)
-debug: false 
-networkLogs: false 
-consoleLogs: errors 
+percyCaptureMode: testcase
+debug: true
+networkLogs: true
+performance: report
 accessibility: true
-
+accessibilityOptions:
+    wcagVersion: wcag21aaa # Default: wcag21aa
+    includeIssueType: 
+        bestPractice: true # Default: false
+        needsReview: true # Default: true
+        experimental: false # Default: true
+        advanced: false
+parallelsPerPlatform: ${BSTACK_PARALLELS}
