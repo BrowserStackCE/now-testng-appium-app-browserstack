@@ -4,8 +4,10 @@ local.log
 .idea
 *.iml
 **/logs/*
+**/log*
 .DS_Store
 build
 gradle
 .gradle
 gradlew*
+
